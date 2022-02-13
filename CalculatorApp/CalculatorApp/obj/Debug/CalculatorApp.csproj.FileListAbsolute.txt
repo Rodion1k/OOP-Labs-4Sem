@@ -1,0 +1,11 @@
+D:\учеба\OOP\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.exe.config
+D:\учеба\OOP\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.exe
+D:\учеба\OOP\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.pdb
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.AssemblyReference.cache
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.SuggestedBindingRedirects.cache
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.Properties.Resources.resources
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.GenerateResource.cache
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.CoreCompileInputs.cache
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.exe
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.pdb
+D:\учеба\OOP\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.Calculator.resources

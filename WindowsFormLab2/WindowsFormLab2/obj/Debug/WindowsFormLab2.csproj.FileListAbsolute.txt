@@ -1,0 +1,13 @@
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\bin\Debug\WindowsFormLab2.exe.config
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\bin\Debug\WindowsFormLab2.exe
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\bin\Debug\WindowsFormLab2.pdb
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.csproj.AssemblyReference.cache
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.csproj.SuggestedBindingRedirects.cache
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.Properties.Resources.resources
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.csproj.GenerateResource.cache
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.csproj.CoreCompileInputs.cache
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.exe
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.pdb
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.Form1.resources
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\bin\Debug\System.ComponentModel.Annotations.dll
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.csproj.CopyComplete
