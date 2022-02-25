@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CalculatorApp
@@ -16,12 +9,12 @@ namespace CalculatorApp
     public partial class Calculator : Form
     {
         private string _defaultValue, _operation;
+        private readonly Regex _regexFloat = new Regex(@"^[0-9]+(,\d+)?$"); 
         private double _value, _savedResult;
         private bool _operationIsPressed, _equalIsPressed, _msIsPressed;
         public Calculator()
         {
             InitializeComponent();
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -42,7 +35,6 @@ namespace CalculatorApp
 
         private void ClickNumberButton(object sender, EventArgs e)
         {
-            Regex regexFloat = new Regex(@"\d+(,\d+)?"); // не подходит 
             if (TextLabel.Text.Equals("0") || _operationIsPressed || _equalIsPressed)
                  TextLabel.Text = String.Empty; 
             _operationIsPressed = _equalIsPressed = _msIsPressed = false;
@@ -50,10 +42,13 @@ namespace CalculatorApp
             try
             {
                 string temp = TextLabel.Text + button.Text;
-               
-                if (!regexFloat.IsMatch(temp))
-                    throw new Exception("wrong value");
                 TextLabel.Text = temp;
+                if (button.Text == @",")
+                    temp += "2";
+                if (!_regexFloat.IsMatch(temp) )
+                {
+                    throw new Exception("wrong value");
+                }
                
             }
             catch (Exception exception)
@@ -61,7 +56,6 @@ namespace CalculatorApp
                 TextLabel.Text = TextLabel.Text.Remove(TextLabel.Text.Length-1); // удалить лишнюю ,
                 Debug.WriteLine(exception.Message);
                 MessageBox.Show(exception.Message);
-                //  throw;
             }
             finally
             {
@@ -98,8 +92,6 @@ namespace CalculatorApp
                     _value = Math.Pow(_value, Double.Parse(TextLabel.Text));
                     TextLabel.Text = _value.ToString(CultureInfo.InvariantCulture);
                     break;
-                default:
-                    break;
             }
 
             _equalIsPressed = true;
@@ -123,13 +115,11 @@ namespace CalculatorApp
             _operationIsPressed = true;
             tempTextLabel.Text = _value + @" " + _operation;
         }
-
         private void buttonMS_Click(object sender, EventArgs e)
         {
             _savedResult = _value;
             saveLabel.Text = $@"Saved Result: {_savedResult}";
         }
-
         private void buttonMR_Click(object sender, EventArgs e)
         {
             _value = _savedResult;

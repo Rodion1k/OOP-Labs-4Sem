@@ -1,138 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace WindowsFormLab2
 {
-    public partial class Form1 : Form // выбор текста в говне хз почему ..........................................................................................
+    public partial class Form1 : Form
     {
         private List<Student> _tempList; // для добавлениея в файл
         private List<Student> _mainList; // для поиска и вывода в окно
         private Student _student;
-        private Address _address;
-        private string massage = string.Empty;
+        private string _massage = string.Empty;
+        private Timer _timer;
+
         public Form1()
         {
             InitializeComponent();
+            _timer = new Timer() { Interval = 1000 };
+            _timer.Tick += timer_Tick;
+            _timer.Start();
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            toolDateStatusLabel.Text = DateTime.Now.ToLongDateString();
+            toolTimeStatusLabel.Text = DateTime.Now.ToLongTimeString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             _tempList = new List<Student>();
             _student = new Student();
-            _address = new Address();
             _mainList = new List<Student>();
         }
-        
-        private void TextBoxNameTextChanged(object sender, EventArgs e)
-        {
-          //  _student.Name = textBoxName.Text;
-        }
-        private void TextBoxSecondNameTextChanged(object sender, EventArgs e)
-        {
-           // _student.SecondName = textBoxSecondName.Text;
-        }
-        private void TextBoxStreetTextChanged(object sender, EventArgs e)
-        {
-            _address.Street = textBoxStreet.Text;
-        }
-     
-        private void TextBoxApartTextChanged(object sender, EventArgs e)
-        {
-            _address.NumOfApartment = Convert.ToInt32(textBoxApartm.Text);
-        }
-        private void TextBoxIndexTextChanged(object sender, EventArgs e)
-        {
-            _address.Index = Convert.ToInt32(textBoxIndex.Text);
-        } 
-        private void TextBoxPatronymicTextChanged(object sender, EventArgs e)
-        {
-            //_student.Patronymic = textBoxPatronymic.Text;
-        }
-        private void TextBoxHouseTextChanged(object sender, EventArgs e)
-        {
-            _address.NumOfHouse = Convert.ToInt32(textBoxHouse.Text);
-        }
-       
 
-        private bool ValidateObject(Student student)
+        #region InitObject
+
+        private void ChooseSpeciality()
         {
-            errorProvider.Clear();
-            var results = new List<ValidationResult>();
-            var context = new ValidationContext(student);
-            if (!Validator.TryValidateObject(student, context, results, true))
+            if (radioButtonPoit.Checked)
+                _student.Speciality = Student.UniversitySpeciality.Poit;
+            else if (radioButtonIsit.Checked)
+                _student.Speciality = Student.UniversitySpeciality.Isit;
+            else if (radioButtonMobileSystems.Checked)
+                _student.Speciality = Student.UniversitySpeciality.MobileSystems;
+            else if (radioButtonDesigners.Checked)
+                _student.Speciality = Student.UniversitySpeciality.Designers;
+        }
+
+        private void ChooseCourse()
+        {
+            switch (comboBoxCourse.Text)
             {
-                foreach (var error in results)
-                    massage += $"{error.ErrorMessage}\n";
-                errorProvider.SetError(labelProvider, massage);
-                return false;
-            }
-            return true;
-        }
-        private void NumericAgeValueChanged(object sender, EventArgs e)
-        {
-            _student.Age = (Int32)numericAge.Value;
-        }
-
-        private void DateTimePickerValueChanged(object sender, EventArgs e)
-        {
-           // _student.BirthdaDateTime = dateTimePickerBirthdate.Value;
-        }
-
-        private void RadioButtonGenderChanged(object sender, EventArgs e)
-        {
-            RadioButton button = (RadioButton)sender;
-            if(!button.Checked)
-                return;
-            switch (button.Text)
-            {
-                case "M":
-                    _student.Gender = Student.HumanGender.Man;
+                case "First":
+                    _student.Course = 1;
                     break;
-                case "W":
-                    _student.Gender = Student.HumanGender.Woman;
+                case "Second":
+                    _student.Course = 2;
+                    break;
+                case "Third":
+                    _student.Course = 3;
+                    break;
+                case "Fourth":
+                    _student.Course = 4;
                     break;
             }
         }
-        private void RadioButtonSpecialityChanged(object sender, EventArgs e)
+
+        private void ChooseGender()
         {
-            RadioButton button = (RadioButton)sender;
-            if(!button.Checked)
-                return;
-            string tag = (string)button.Tag;
-            switch (tag)
-            {
-                case "P":
-                    _student.Speciality = Student.UniversitySpeciality.Poit;
-                    break;
-                case "I":
-                    _student.Speciality = Student.UniversitySpeciality.Isit;
-                    break;
-                case "M":
-                    _student.Speciality = Student.UniversitySpeciality.MobileSystems;
-                    break;
-                case "D":
-                    _student.Speciality = Student.UniversitySpeciality.Designers;
-                    break;
-                default:
-                    break;
-                    
-            }
+            if (radioButtonMan.Checked)
+                _student.Gender = Student.HumanGender.Man;
+            else if (radioButtonWomen.Checked)
+                _student.Gender = Student.HumanGender.Woman;
         }
+
         private void AddLanguages()
         {
             var aCollection = checkedListBox.CheckedItems;
-            foreach (var aitem in aCollection)
+            foreach (var item in aCollection)
             {
-                _student.AddLanguage(aitem.ToString());
+                _student.AddLanguage(item.ToString());
             }
         }
 
@@ -142,35 +91,83 @@ namespace WindowsFormLab2
             _student.SecondName = textBoxSecondName.Text;
             _student.Patronymic = textBoxPatronymic.Text;
             _student.BirthdaDateTime = dateTimePickerBirthdate.Value;
-
-        }
-
-        private void BoxCourseSelectedIndexChanged(object sender, EventArgs e)
-        {
-             _student.Course = comboBoxCourse.Text;
-        }
-        private void BoxTownSelectedIndexChanged(object sender, EventArgs e)
-        {
-            _address.Town = comboBoxCourse.Text;
-        }
-
-        private void BarNumOfExScroll(object sender, EventArgs e)
-        {
+            _student.Age = (Int32)numericAge.Value;
+            ChooseCourse();
             _student.NumOfExams = trackBarNumOfEx.Value;
-            labelNumOfEx.Text = trackBarNumOfEx.Value.ToString();
+            _student.AddressP.Street = textBoxStreet.Text;
+            //if(!string.IsNullOrWhiteSpace(textBoxApartm.Text))
+            _student.AddressP.NumOfApartment = textBoxApartm.Text;
+            _student.AddressP.NumOfHouse = textBoxHouse.Text;
+            _student.AddressP.Index = textBoxIndex.Text;
+            _student.AddressP.Town = comboBoxTowns.Text;
+            ChooseSpeciality();
+            ChooseGender();
+            AddLanguages();
         }
+
+        #endregion
+
+        #region ValidateObject
+
+        private bool ValidateObject()
+        {
+            errorProvider.Clear();
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(_student);
+            if (!(Validator.TryValidateObject(_student, context, results, true) & ValidateAddress()))
+            {
+                foreach (var error in results)
+                    _massage += $"{error.ErrorMessage}\n";
+                errorProvider.SetError(labelProvider, _massage);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateAddress()
+        {
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(_student.AddressP);
+            if (!Validator.TryValidateObject(_student.AddressP, context, results, true))
+            {
+                foreach (var error in results)
+                    _massage += $"{error.ErrorMessage}\n";
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region MainButtons
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            AddLanguages();
-            _student.InitAddress(_address);
-            if (ValidateObject(_student)) // ВАЛИДНОСТЬ АДРЕСА ПОЛЕЙ КОТОРЫЙ
+            InitStudent();
+            // _student.Age = 2;
+            // _student.Course = 2;
+            // _student.Gender = Student.HumanGender.Man;
+            // _student.Name = "Dff";
+            // _student.SecondName = "Dff";
+            // _student.Patronymic = "Dff";
+            // _student.Speciality = Student.UniversitySpeciality.Isit;
+            // _student.NumOfExams = 2;
+            // _student.AddressP.Index = "ds2233";
+            // _student.AddressP.Street = "Dff";
+            // _student.AddressP.Town = "Mosf";
+            // _student.AddressP.NumOfApartment = "22";
+            // _student.AddressP.NumOfHouse = "220";
+            if (ValidateObject())
             {
-                _tempList.Add(_student);// ссылка  ебучая 
-                _student = new Student();  
+                _tempList.Add(_student);
+                _student = new Student();
+                toolCountLabel.Text = _mainList.Count.ToString();
+                toolStripStatusLabel.Text = @"student has been added";
             }
-                
         }
+
         private void ButtonSaveClick(object sender, EventArgs e)
         {
             XmlSerializeWrapper.Serialize(_tempList, "students.xml");
@@ -184,27 +181,161 @@ namespace WindowsFormLab2
             List<Student> list = new List<Student>();
             XmlSerializeWrapper.Deserialize(ref list, "students.xml");
             foreach (var aitem in list)
-            {// String.Format?
                 labelShow.Text += aitem.ToString();
-            }
-            // мб сделать создание новых файлов и возможность выбора между файлами которые показать (есил невлом) 
+            toolStripStatusLabel.Text = @"Deserialize and show students";
         }
 
+        #endregion
 
-        private void manToolStripMenuItem_Click(object sender, EventArgs e)
+        #region QueryClickEvents
+
+        private void ManToolStripMenuItemClick(object sender, EventArgs e)
         {
-            string result = String.Empty; // проверить запрос
-            var kek = _mainList.Where(n => n.Gender == Student.HumanGender.Man).ToList();
-            foreach (var VARIABLE in kek)
-            {
-                result += VARIABLE.ToString();
-            }
+            string result = String.Empty;
+            var list = _mainList.Where(n => n.Gender == Student.HumanGender.Man).ToList();
+            foreach (var student in list)
+                result += student.ToString();
             MessageBox.Show(
                 $"gender query result is:\n{result}",
                 @"Result",
                 MessageBoxButtons.OK
             );
-            
+        }
+
+        private void WomanToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            string result = String.Empty;
+            var list = _mainList.Where(n => n.Gender == Student.HumanGender.Woman).ToList();
+            foreach (var student in list)
+                result += student.ToString();
+            MessageBox.Show(
+                $"gender query result is:\n{result}",
+                @"Result",
+                MessageBoxButtons.OK
+            );
+        }
+
+        private void PoitToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            string result = String.Empty;
+            var list = _mainList.Where(n => n.Speciality == Student.UniversitySpeciality.Poit).ToList();
+            foreach (var student in list)
+            {
+                result += student.ToString();
+            }
+
+            MessageBox.Show(
+                $"gender query result is:\n{result}",
+                @"Result",
+                MessageBoxButtons.OK
+            );
+        }
+
+        private void IsitToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            string result = String.Empty;
+            var list = _mainList.Where(n => n.Speciality == Student.UniversitySpeciality.Isit).ToList();
+            foreach (var student in list)
+            {
+                result += student.ToString();
+            }
+
+            MessageBox.Show(
+                $"gender query result is:\n{result}",
+                @"Result",
+                MessageBoxButtons.OK
+            );
+        }
+
+        private void MobileSystemsToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            string result = String.Empty;
+            var list = _mainList.Where(n => n.Speciality == Student.UniversitySpeciality.MobileSystems).ToList();
+            foreach (var student in list)
+            {
+                result += student.ToString();
+            }
+
+            MessageBox.Show(
+                $"gender query result is:\n{result}",
+                @"Result",
+                MessageBoxButtons.OK
+            );
+        }
+
+        private void DesignersToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            string result = String.Empty;
+            var list = _mainList.Where(n => n.Speciality == Student.UniversitySpeciality.Designers).ToList();
+            foreach (var student in list)
+            {
+                result += student.ToString();
+            }
+
+            MessageBox.Show(
+                $"gender query result is:\n{result}",
+                @"Result",
+                MessageBoxButtons.OK
+            );
+        }
+
+        #endregion
+
+        #region Sorts
+
+        private void YearToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            labelShow.Text = String.Empty;
+            if (_mainList.Count == 0)
+                XmlSerializeWrapper.Deserialize(ref _mainList, "students.xml");
+            _mainList = _mainList.OrderBy(n => n.Course).ToList();
+            foreach (var item in _mainList)
+                labelShow.Text += item.ToString();
+            XmlSerializeWrapper.Serialize(_mainList, "SortYear.xml");
+        }
+
+        private void SpecialityToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            labelShow.Text = String.Empty;
+            if (_mainList.Count == 0)
+                XmlSerializeWrapper.Deserialize(ref _mainList, "students.xml");
+            _mainList = _mainList.OrderBy(n => n.Speciality).ToList();
+            foreach (var aitem in _mainList)
+                labelShow.Text += aitem.ToString();
+            XmlSerializeWrapper.Serialize(_mainList, "SortSpeciality.xml");
+        }
+
+        private void SecondNameToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            labelShow.Text = String.Empty;
+            if (_mainList.Count == 0)
+                XmlSerializeWrapper.Deserialize(ref _mainList, "students.xml");
+            _mainList = _mainList.OrderBy(n => n.SecondName).ToList();
+            foreach (var item in _mainList)
+                labelShow.Text += item.ToString();
+            XmlSerializeWrapper.Serialize(_mainList, "SortSecondName.xml");
+        }
+
+        #endregion
+
+        private void StripMenuItem1Click(object sender, EventArgs e)
+        {
+            SearchForm form = new SearchForm();
+            form.Show();
+        }
+
+        private void BarNumOfExScroll(object sender, EventArgs e)
+        {
+            labelNumOfEx.Text = trackBarNumOfEx.Value.ToString();
+        }
+
+        private void AboutUsMenuItemClick(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                @"Vaisera Rodion Leonidovich (Version: 3.0)",
+                @"About Us",
+                MessageBoxButtons.OK
+            );
         }
     }
 }

@@ -11,3 +11,4 @@ D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.pdb
 D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.Form1.resources
 D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\bin\Debug\System.ComponentModel.Annotations.dll
 D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.csproj.CopyComplete
+D:\учеба\OOP\WindowsFormLab2\WindowsFormLab2\obj\Debug\WindowsFormLab2.SearchForm.resources

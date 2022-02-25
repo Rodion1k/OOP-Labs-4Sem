@@ -1,5 +1,4 @@
 using System.IO;
-using System.Security.AccessControl;
 using System.Xml.Serialization;
 
 namespace WindowsFormLab2
@@ -9,7 +8,7 @@ namespace WindowsFormLab2
         public static void Serialize<T>(T obj, string filename)
         {
             XmlSerializer xmlFormatter = new XmlSerializer(typeof(T));
-            using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
                 xmlFormatter.Serialize(fs,obj);
             }
