@@ -1,0 +1,59 @@
+<Page x:Class="GameStore.ShopPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:GameStore"
+      mc:Ignorable="d"
+      Title="ShopPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Page.Resources>
+        <Style x:Key="StackPanelStyle" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="1" x:Name="ListGames" Style="{DynamicResource ListStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel x:Name="ListItem" Margin="5" d:DataContext="{d:DesignInstance }" Background="Transparent"
+                                Orientation="Horizontal" Width="630" >
+                        <Image Width="200" Height="175" Source="{Binding Path=ImagePath}" />
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource StackPanelStyle}">
+                                <TextBlock Text="{DynamicResource GameNameText}"
+                                           Style="{DynamicResource TextThemeStyle}" />
+                                <TextBlock Text="{Binding Path=Name}" Style="{DynamicResource TextThemeStyle}" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource StackPanelStyle}">
+                                <TextBlock Text="{DynamicResource GameDescriptionText}"
+                                           Style="{DynamicResource TextThemeStyle}" />
+                                <TextBlock Text="{Binding Path=Description}" Style="{DynamicResource TextThemeStyle}" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource StackPanelStyle}">
+                                <TextBlock Text="{DynamicResource GameRatingText}"
+                                           Style="{DynamicResource TextThemeStyle}" />
+                                <TextBlock Text="{Binding Path=Rating}" Style="{DynamicResource TextThemeStyle}" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource StackPanelStyle}">
+                                <TextBlock Text="{DynamicResource GamePriceText}"
+                                           Style="{DynamicResource TextThemeStyle}" />
+                                <TextBlock Text="{Binding Path=Price}" Style="{DynamicResource TextThemeStyle}" />
+                            </StackPanel>
+                            
+                 
+                        </StackPanel>
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+    </Grid>
+</Page>

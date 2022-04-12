@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="MainWindowMenuButton.xaml" />
+        <ResourceDictionary Source="Text.xaml" />
+        <ResourceDictionary Source="List.xaml"/>
+        <ResourceDictionary Source="SearchTextBox.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="MenuButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MenuButtonBehavior}">
+        <Setter Property="Background" Value="#04293A" />
+        <Setter Property="Foreground" Value="Azure" />
+    </Style>
+    <Style x:Key="WindowStyle" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="#04293A" />
+    </Style>
+    <Style x:Key="ListStyle" TargetType="{x:Type ListBox}" BasedOn="{StaticResource List}">
+        <Setter Property="Background" Value="#04293A" />
+    </Style>
+    <Style x:Key="TextThemeStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ListTextStyle}">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    <Style x:Key="SearchThemeStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource SearchTextBox}">
+        <Setter Property="Foreground" Value="Gray"/>
+    </Style>
+    <Style x:Key="ExpanderButtonTheme" TargetType="{x:Type Expander}">
+        <Setter Property="Background" Value="#04293A"/>
+        <Setter Property="Foreground" Value="Azure"/>
+    </Style>
+    <Style x:Key="CheckBoxButtonTheme" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="#04293A"/>
+        <Setter Property="Foreground" Value="Azure"/>
+    </Style>
+</ResourceDictionary>

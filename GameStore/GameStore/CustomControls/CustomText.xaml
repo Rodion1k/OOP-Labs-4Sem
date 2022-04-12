@@ -1,0 +1,17 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:GameStore.CustomControls">
+                    <Style TargetType="local:CustomText">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="local:CustomText">
+                                    <TextBlock Text="Custom Text"
+                                               FontSize="12"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="{TemplateBinding Foreground}"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+</ResourceDictionary>

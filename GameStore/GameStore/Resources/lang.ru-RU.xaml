@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <v:String x:Key="ShopButton">Магазин</v:String>
+    <v:String x:Key="GamesButton">Все игры</v:String>
+    <v:String x:Key="SearchHint">Поиск</v:String>
+    <v:String x:Key="GameNameText">Название: </v:String>
+    <v:String x:Key="GameDescriptionText">Описание: </v:String>
+    <v:String x:Key="GamePriceText">Цена: </v:String>
+    <v:String x:Key="GameRatingText">Рейтинг: </v:String>
+    <v:String x:Key="AddGameButton"> Добавить игру </v:String>
+    <v:String x:Key="DeleteGameButton"> Удалить игру </v:String>
+    <v:String x:Key="AddImageButton"> Добавить картинку </v:String>
+    <v:String x:Key="SortExpander"> Сортировать по </v:String>
+    <v:String x:Key="PriceSortBox"> Цене </v:String>
+    <v:String x:Key="RatingSortBox"> Рейтингу </v:String>
+    <v:String x:Key="NameSortBox"> Названию </v:String>
+</ResourceDictionary>

@@ -1,0 +1,135 @@
+﻿<Window x:Class="GameStore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameStore"
+        xmlns:custom="clr-namespace:GameStore.CustomControls"
+        mc:Ignorable="d"
+        Height="500" Width="900" MinHeight="500" MinWidth="900"
+        WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="LangButton" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="30" To="38" Duration="0:0:1"
+                                             AutoReverse="True" />
+                            <DoubleAnimation Storyboard.TargetProperty="Height" From="30" To="38" Duration="0:0:1"
+                                             AutoReverse="True" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="checkButton" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=checkBox1, Path=IsChecked}"
+                             Value="True">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid ShowGridLines="True" Style="{DynamicResource WindowStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Name="WindowToolBar" Background="Transparent" MouseDown="WindowToolBar_OnMouseDown">
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image Name="MinButton" Source="icons/window-minimize.png" Margin="5" Width="30" Height="20"
+                       Style="{StaticResource ToolButtonImage}" MouseDown="MinButton_OnMouseDown" />
+                <Image Name="MaxButton" Source="icons/window-maximize.png" Margin="5,5,5,5" Width="30" Height="20"
+                       Style="{StaticResource ToolButtonImage}" MouseDown="MaxButton_OnMouseDown" />
+                <Image Name="CloseButton" Source="icons/window-close.png" Margin="5" Width="30" Height="20"
+                       Style="{StaticResource ToolButtonImage}" MouseDown="ExitOnMouseDown" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Source="Images/epic_games_alt_macos_bigsur_icon_190199.png" Width="70"
+                   Height="70"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+            <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="1" Width="500" Height="50"
+                     FontSize="30" Style="{DynamicResource SearchThemeStyle}" TextChanged="SearchTextBox_OnTextChanged" />
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Height="30" />
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ScrollViewer Grid.Row="0" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel x:Name="Menu" Margin="2">
+                        <Button Name="AddGameButton" Width="200" Height="50" Content="{DynamicResource AddGameButton}"
+                                Style="{DynamicResource MenuButton}" Command="ApplicationCommands.Open"
+                                VerticalAlignment="Top">
+                            <Button.CommandBindings>
+                                <CommandBinding Command="Open" Executed="AddGameButton_OnClick" />
+                            </Button.CommandBindings>
+                        </Button>
+                        <Button Name="DeleteGameButton" Width="200" Height="50"
+                                Content="{DynamicResource DeleteGameButton}"
+                                Style="{DynamicResource MenuButton}" Command="ApplicationCommands.Delete"
+                                VerticalAlignment="Top">
+                            <Button.CommandBindings>
+                                <CommandBinding Command="Delete" Executed="DeleteGameButton_OnClick" />
+                            </Button.CommandBindings>
+                        </Button>
+                        <Expander Style="{DynamicResource ExpanderButtonTheme}"> <!--Темплейт переделать -->
+                            <Expander.Header>
+                                <TextBlock Text="{DynamicResource SortExpander}" />
+                            </Expander.Header>
+                            <StackPanel>
+                                <RadioButton Name="NameCheckBox" Content="{DynamicResource NameSortBox}"
+                                             Style="{DynamicResource CheckBoxButtonTheme}" Checked="CheckBox_OnChecked" />
+                                <RadioButton Name="PriceCheckBox" Content="{DynamicResource PriceSortBox}"
+                                             Style="{DynamicResource CheckBoxButtonTheme}" Checked="CheckBox_OnChecked" />
+                                <RadioButton Name="RatingCheckBox" Content="{DynamicResource RatingSortBox}"
+                                             Style="{DynamicResource CheckBoxButtonTheme}" Checked="CheckBox_OnChecked" />
+                            </StackPanel>
+                        </Expander>
+                        <Button Name="UndoButton" Margin="5" Click="UndoButton_OnClick"
+                                Content="undo" />
+                        <Button Name="RedoButton" Margin="5" Click="RedoButton_OnClick"
+                                Content="redo" />
+                        <StackPanel>
+                            <custom:CustomText Width="150" Height="40" Foreground="Aqua"/>
+                            <CheckBox x:Name="checkBox1" Content="Disable" Foreground="Azure" />
+                            <Button x:Name="button1" Content="Кнопка 1" Style="{StaticResource checkButton}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                </ScrollViewer>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" Height="30">
+                    <Image Name="ChangeThemeButton" Source="Icons/theme-light-dark.png"
+                           MouseDown="ChangeThemeButton_OnMouseDown" />
+
+                    <Button Name="LangRuButton" Content="Ru" Margin="5,0,5,0" Width="30" Background="Transparent"
+                            Foreground="Azure" BorderBrush="Transparent" Click="LangRuButton_OnClick"
+                            Style="{StaticResource LangButton}" />
+                    <Button Name="LangEnButton" Content="En" Width="30" Background="Transparent" Foreground="Azure"
+                            BorderBrush="Transparent" Style="{StaticResource LangButton}" Click="LangEnButton_OnClick" />
+                </StackPanel>
+
+            </Grid>
+
+            <Frame Grid.Row="1" Grid.Column="1" x:Name="MainFrame" />
+        </Grid>
+
+    </Grid>
+</Window>
