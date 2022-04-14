@@ -112,6 +112,10 @@ namespace WindowsFormLab2
             this.toolTimeStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label2 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonYes = new System.Windows.Forms.RadioButton();
+            this.radioButtonNO = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericAge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarNumOfEx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -120,6 +124,7 @@ namespace WindowsFormLab2
             this.groupBox2.SuspendLayout();
             this.MainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // numericAge
@@ -783,12 +788,55 @@ namespace WindowsFormLab2
             this.label2.TabIndex = 50;
             this.label2.Text = "Name:";
             // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(502, 325);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(99, 28);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Military?";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButtonYes);
+            this.groupBox3.Controls.Add(this.radioButtonNO);
+            this.groupBox3.Location = new System.Drawing.Point(618, 312);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(188, 41);
+            this.groupBox3.TabIndex = 43;
+            this.groupBox3.TabStop = false;
+            // 
+            // radioButtonYes
+            // 
+            this.radioButtonYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonYes.Location = new System.Drawing.Point(6, 11);
+            this.radioButtonYes.Name = "radioButtonYes";
+            this.radioButtonYes.Size = new System.Drawing.Size(78, 24);
+            this.radioButtonYes.TabIndex = 24;
+            this.radioButtonYes.TabStop = true;
+            this.radioButtonYes.Text = "Yes";
+            this.radioButtonYes.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNO
+            // 
+            this.radioButtonNO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonNO.Location = new System.Drawing.Point(87, 10);
+            this.radioButtonNO.Name = "radioButtonNO";
+            this.radioButtonNO.Size = new System.Drawing.Size(86, 24);
+            this.radioButtonNO.TabIndex = 23;
+            this.radioButtonNO.TabStop = true;
+            this.radioButtonNO.Text = "No";
+            this.radioButtonNO.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(982, 873);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -846,9 +894,16 @@ namespace WindowsFormLab2
             this.MainMenu.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButtonYes;
+        private System.Windows.Forms.RadioButton radioButtonNO;
+
+        private System.Windows.Forms.Label label18;
 
         private System.Windows.Forms.Label label2;
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using WindowsFormLab2.Strategy;
 
 namespace WindowsFormLab2
 {
@@ -17,10 +18,13 @@ namespace WindowsFormLab2
             labelResult.Text = String.Empty;
             List<Student> list = new List<Student>();
             XmlSerializeWrapper.Deserialize(ref list,"students.xml");
+            SearchManager searchManager = new SearchManager(list);
             if (!string.IsNullOrWhiteSpace(textBoxName.Text) && Student.CheckTextBox(textBoxName.Text))
             {
               // list.Where(n => n.Name == textBoxName.Text).Select(n => n.ToString()).ToList().ForEach(n => labelResult.Text += n);
-               list = list.Where(n => n.Name == textBoxName.Text).ToList();
+              searchManager.Searchable = new NameSearch(textBoxName.Text);
+              list = searchManager.Search();
+              //list = list.Where(n => n.Name == textBoxName.Text).ToList();
             }
             if (!string.IsNullOrWhiteSpace(textBoxSecondName.Text) && Student.CheckTextBox(textBoxSecondName.Text))
             {

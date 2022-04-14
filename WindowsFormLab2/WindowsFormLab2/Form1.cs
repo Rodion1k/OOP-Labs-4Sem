@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Forms;
+using WindowsFormLab2.AbstractFactory;
+using WindowsFormLab2.Strategy;
 
 namespace WindowsFormLab2
 {
@@ -13,6 +15,7 @@ namespace WindowsFormLab2
         private Student _student;
         private string _massage = string.Empty;
         private Timer _timer;
+        private SearchManager specSearchManager;
 
         public Form1()
         {
@@ -20,6 +23,7 @@ namespace WindowsFormLab2
             _timer = new Timer() { Interval = 1000 };
             _timer.Tick += timer_Tick;
             _timer.Start();
+            specSearchManager = new SearchManager(_mainList);
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -31,7 +35,7 @@ namespace WindowsFormLab2
         private void Form1_Load(object sender, EventArgs e)
         {
             _tempList = new List<Student>();
-            _student = new Student();
+            //_student = new Student();
             _mainList = new List<Student>();
         }
 
@@ -95,7 +99,6 @@ namespace WindowsFormLab2
             ChooseCourse();
             _student.NumOfExams = trackBarNumOfEx.Value;
             _student.AddressP.Street = textBoxStreet.Text;
-            //if(!string.IsNullOrWhiteSpace(textBoxApartm.Text))
             _student.AddressP.NumOfApartment = textBoxApartm.Text;
             _student.AddressP.NumOfHouse = textBoxHouse.Text;
             _student.AddressP.Index = textBoxIndex.Text;
@@ -145,7 +148,14 @@ namespace WindowsFormLab2
 
         private void ButtonAddClick(object sender, EventArgs e)
         {
-            InitStudent();
+            // фабрика
+            _student = new SimpleStudent();
+            if (radioButtonYes.Checked)
+                //_student = new Student(new MilitaryStudentFactory());
+                if (radioButtonNO.Checked)
+                    //_student = new Student(new  new SimpleStudentFactory()); 
+
+                    InitStudent();
             // _student.Age = 2;
             // _student.Course = 2;
             // _student.Gender = Student.HumanGender.Man;
@@ -162,7 +172,7 @@ namespace WindowsFormLab2
             if (ValidateObject())
             {
                 _tempList.Add(_student);
-                _student = new Student();
+                //_student = new Student();
                 toolCountLabel.Text = _mainList.Count.ToString();
                 toolStripStatusLabel.Text = @"student has been added";
             }
@@ -250,7 +260,10 @@ namespace WindowsFormLab2
         private void MobileSystemsToolStripMenuItemClick(object sender, EventArgs e)
         {
             string result = String.Empty;
-            var list = _mainList.Where(n => n.Speciality == Student.UniversitySpeciality.MobileSystems).ToList();
+
+            specSearchManager.Searchable = new SpecialitySearch(Student.UniversitySpeciality.MobileSystems);
+            var list = specSearchManager.Search();
+            //var list = _mainList.Where(n => n.Speciality == Student.UniversitySpeciality.MobileSystems).ToList();
             foreach (var student in list)
             {
                 result += student.ToString();

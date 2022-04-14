@@ -9,9 +9,10 @@ namespace CalculatorApp
     public partial class Calculator : Form
     {
         private string _defaultValue, _operation;
-        private readonly Regex _regexFloat = new Regex(@"^[0-9]+(,\d+)?$"); 
+        private readonly Regex _regexFloat = new Regex(@"^[0-9]+(,\d+)?$");
         private double _value, _savedResult;
         private bool _operationIsPressed, _equalIsPressed, _msIsPressed;
+
         public Calculator()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace CalculatorApp
             _operationIsPressed = _equalIsPressed = _msIsPressed = false;
         }
 
-       
+
         private void buttonAC_Click(object sender, EventArgs e)
         {
             _value = 0;
@@ -36,7 +37,7 @@ namespace CalculatorApp
         private void ClickNumberButton(object sender, EventArgs e)
         {
             if (TextLabel.Text.Equals("0") || _operationIsPressed || _equalIsPressed)
-                 TextLabel.Text = String.Empty; 
+                TextLabel.Text = String.Empty;
             _operationIsPressed = _equalIsPressed = _msIsPressed = false;
             Button button = (Button)sender;
             try
@@ -45,15 +46,14 @@ namespace CalculatorApp
                 TextLabel.Text = temp;
                 if (button.Text == @",")
                     temp += "2";
-                if (!_regexFloat.IsMatch(temp) )
+                if (!_regexFloat.IsMatch(temp))
                 {
                     throw new Exception("wrong value");
                 }
-               
             }
             catch (Exception exception)
             {
-                TextLabel.Text = TextLabel.Text.Remove(TextLabel.Text.Length-1); // удалить лишнюю ,
+                TextLabel.Text = TextLabel.Text.Remove(TextLabel.Text.Length - 1); // удалить лишнюю ,
                 Debug.WriteLine(exception.Message);
                 MessageBox.Show(exception.Message);
             }
@@ -61,28 +61,27 @@ namespace CalculatorApp
             {
                 Debug.WriteLine("Number Button is clicked");
             }
-
         }
-        
+
         private void ClickEqualButton(object sender, EventArgs e)
         {
             tempTextLabel.Text = String.Empty;
             switch (_operation)
             {
                 case "+":
-                    TextLabel.Text = (_value += Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture); 
+                    TextLabel.Text = (_value += Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture);
                     break;
                 case "-":
-                    TextLabel.Text = (_value -= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture); 
+                    TextLabel.Text = (_value -= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture);
                     break;
                 case "*":
-                    TextLabel.Text = (_value *= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture); 
+                    TextLabel.Text = (_value *= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture);
                     break;
                 case "/":
-                    TextLabel.Text = (_value /= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture); 
+                    TextLabel.Text = (_value /= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture);
                     break;
                 case "%":
-                    TextLabel.Text = (_value %= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture); 
+                    TextLabel.Text = (_value %= Double.Parse(TextLabel.Text)).ToString(CultureInfo.InvariantCulture);
                     break;
                 case "$":
                     _value = Math.Floor(_value);
@@ -104,27 +103,29 @@ namespace CalculatorApp
             _value = Double.Parse(TextLabel.Text);
             _operationIsPressed = true;
             tempTextLabel.Text = _value + @" " + _operation;
-            TextLabel.Text = Math.Floor(_value).ToString(CultureInfo.InvariantCulture); 
+            TextLabel.Text = Math.Floor(_value).ToString(CultureInfo.InvariantCulture);
         }
+
         private void ClickOperationButton(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             _operation = button.Text;
-            if(!_msIsPressed)
+            if (!_msIsPressed)
                 _value = Double.Parse(TextLabel.Text);
             _operationIsPressed = true;
             tempTextLabel.Text = _value + @" " + _operation;
         }
+
         private void buttonMS_Click(object sender, EventArgs e)
         {
             _savedResult = _value;
             saveLabel.Text = $@"Saved Result: {_savedResult}";
         }
+
         private void buttonMR_Click(object sender, EventArgs e)
         {
             _value = _savedResult;
             _msIsPressed = true;
         }
-
     }
 }

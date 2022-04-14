@@ -358,6 +358,8 @@
             this.Controls.Add(this.buttonAC);
             this.Controls.Add(this.TextLabel);
             this.Location = new System.Drawing.Point(15, 15);
+            this.MaximumSize = new System.Drawing.Size(539, 735);
+            this.MinimumSize = new System.Drawing.Size(539, 735);
             this.Name = "Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

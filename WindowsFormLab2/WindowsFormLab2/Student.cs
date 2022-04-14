@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
+using WindowsFormLab2.AbstractFactory;
 
 namespace WindowsFormLab2
 {
+    public interface IStudent
+    {
+        void StartLearning();
+     
+    }
+    [XmlInclude(typeof(SimpleStudent))]
+    [XmlInclude(typeof(MilitaryStudent))]
     [Serializable]
     [XmlType("student")]
-    public class Student : IValidatableObject
+    public abstract class Student : IValidatableObject
     {
         public enum HumanGender
         {
@@ -30,6 +38,15 @@ namespace WindowsFormLab2
             Languages = new List<string>();
         }
 
+        public Student(StudentFactory factory)
+        {
+            _weapon = factory.CreateWeapon();
+            AddressP = new Address();
+            Languages = new List<string>();
+        }
+
+        private Weapon _weapon;
+       
         private static Regex _validTextBox = new Regex(@"^([A-Z]|[А-Я])([a-z]|[а-я])+$");
 
         [XmlElement(ElementName = "name")] public string Name { get; set; }
@@ -105,5 +122,42 @@ namespace WindowsFormLab2
         }
 
         public override string ToString() => $@"Student: ({Name},{SecondName},{Age},{Speciality})" + '\n';
+        public void StartSmiling() => Console.WriteLine(@"студент начал улыбатьcя");
+
     }
+    
+    [Serializable]
+    public class SimpleStudent:Student,IStudent
+    {
+        public void StartLearning()
+        {
+            Console.WriteLine(@"student start reading");
+        }
+
+       
+    }
+    
+    [Serializable]
+    public class MilitaryStudent:Student
+    {
+        public void StartShooting()
+        {
+            Console.WriteLine(@"student start shooting");
+        }
+        
+    }
+
+    public abstract class Weapon
+    {
+        
+    }
+    public class Gun:Weapon 
+    {
+        
+    }
+    public class Arbalet:Weapon
+    {
+                
+    }
+
 }

@@ -77,7 +77,7 @@
                         <Button Name="AddGameButton" Width="200" Height="50" Content="{DynamicResource AddGameButton}"
                                 Style="{DynamicResource MenuButton}" Command="ApplicationCommands.Open"
                                 VerticalAlignment="Top">
-                            <Button.CommandBindings>
+                            <Button.CommandBindings><!-- вообще делается для MVVM, но лабы говно поэтому так -->
                                 <CommandBinding Command="Open" Executed="AddGameButton_OnClick" />
                             </Button.CommandBindings>
                         </Button>
