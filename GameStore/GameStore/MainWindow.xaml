@@ -7,7 +7,7 @@
         xmlns:custom="clr-namespace:GameStore.CustomControls"
         mc:Ignorable="d"
         Height="500" Width="900" MinHeight="500" MinWidth="900"
-        WindowStyle="None" WindowStartupLocation="CenterScreen">
+        WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Window.Resources>
         <Style x:Key="LangButton" TargetType="{x:Type Button}">
             <Style.Triggers>
