@@ -1,0 +1,36 @@
+﻿<Window x:Class="LP_Lab10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LP_Lab10"
+        mc:Ignorable="d"
+        Title="CRUD_Application" Height="550" Width="825" MaxHeight="550" MaxWidth="825" MinHeight="550" MinWidth="825">
+    
+    <Grid Background="Bisque">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Height="50" Orientation="Horizontal">
+            <Button x:Name="AddButton" Click="AddButton_OnClick" Width="80" Background="Transparent" Content="Add"/>
+            <Button x:Name="DelButton" Click="DelButton_OnClick" Width="80" Background="Transparent" Content="Delete" IsEnabled="False"/>
+            <Button x:Name="RefreshButton" Click="RefreshButton_OnClick" Width="80" Background="Transparent" Content="Refresh"/>
+            <Button x:Name="testButton" Click="TestButton_OnClick" Width="80" Background="Transparent" Content="test" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Height="30" Orientation="Horizontal">
+            <RadioButton x:Name="RadioButtonStudent"  Content="Student" Margin="5" Click="RadioButton_OnClick"/>
+            <RadioButton x:Name="RadioButtonTeacher" Content="Teacher" Margin="5" Click="RadioButton_OnClick"/>
+            <RadioButton x:Name="RadioButtonSubject" Content="Subject" Margin="5" Click="RadioButton_OnClick"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="UndoButton" Content="Undo" Margin="5" Click="UndoButton_OnClick"/>
+                <Button x:Name="RedoButton" Content="Redo" Margin="5" Click="RedoButton_OnClick"/>
+        </StackPanel>
+        <DataGrid Grid.Row="2" x:Name="DataGrid" AutoGenerateColumns="True"  CellEditEnding="DataGrid_OnCellEditEnding" SelectionChanged="DataGrid_OnSelectionChanged" >
+            
+        </DataGrid>
+        
+    </Grid>
+</Window>

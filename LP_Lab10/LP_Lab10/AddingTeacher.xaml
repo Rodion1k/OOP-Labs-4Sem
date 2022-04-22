@@ -1,0 +1,43 @@
+<Page x:Class="LP_Lab10.AddingTeacher"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:LP_Lab10"
+      mc:Ignorable="d"
+      Title="AddingTeacher" Height="450" Width="800">
+    <Page.Resources>
+       
+        <Style x:Key="StackPanelStyle" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="190"/>
+            <Setter Property="Height" Value="18"/>
+        </Style>
+
+    </Page.Resources>
+    <Grid>
+        <StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="Краткая Запись: "/>
+                <TextBox x:Name="TEACHER" Style="{StaticResource TextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="ФИО: "/>
+                <TextBox x:Name="TEACHER_NAME" Style="{StaticResource TextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="Гендер: "/>
+                <TextBox x:Name="GENDER" Style="{StaticResource TextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="Кафедра: "/>
+                <TextBox x:Name="PULPIT" Style="{StaticResource TextBoxStyle}"/>
+            </StackPanel>
+            <Button Content="Add" Background="Transparent" Width="50" HorizontalAlignment="Left" Click="ButtonBase_OnClick"/>
+        </StackPanel>
+    </Grid>
+</Page>

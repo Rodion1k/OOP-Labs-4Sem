@@ -180,5 +180,17 @@ namespace GameStore
                 _shopPage.ListGames.ItemsSource = ShopPage.Games;
             }
         }
+        
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+            EventsWindow eventsWindow = new EventsWindow();
+            eventsWindow.Show();
+        }
+
+        private void NameTextBox_OnTap(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("kek");
+        }
     }
 }

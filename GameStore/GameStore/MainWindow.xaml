@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameStore"
         xmlns:custom="clr-namespace:GameStore.CustomControls"
+        xmlns:command="clr-namespace:GameStore.Command"
         mc:Ignorable="d"
         Height="500" Width="900" MinHeight="500" MinWidth="900"
         WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
@@ -32,6 +33,9 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="command:WindowCommands.DeleteGame" Executed="DeleteGameButton_OnClick"/>
+    </Window.CommandBindings>
 
     <Grid ShowGridLines="True" Style="{DynamicResource WindowStyle}">
         <Grid.RowDefinitions>
@@ -83,11 +87,9 @@
                         </Button>
                         <Button Name="DeleteGameButton" Width="200" Height="50"
                                 Content="{DynamicResource DeleteGameButton}"
-                                Style="{DynamicResource MenuButton}" Command="ApplicationCommands.Delete"
+                                Style="{DynamicResource MenuButton}" Command="command:WindowCommands.DeleteGame"
                                 VerticalAlignment="Top">
-                            <Button.CommandBindings>
-                                <CommandBinding Command="Delete" Executed="DeleteGameButton_OnClick" />
-                            </Button.CommandBindings>
+                            
                         </Button>
                         <Expander Style="{DynamicResource ExpanderButtonTheme}"> <!--Темплейт переделать -->
                             <Expander.Header>
@@ -110,6 +112,8 @@
                             <custom:CustomText Width="150" Height="40" Foreground="Aqua"/>
                             <CheckBox x:Name="checkBox1" Content="Disable" Foreground="Azure" />
                             <Button x:Name="button1" Content="Кнопка 1" Style="{StaticResource checkButton}" />
+                            <local:UserControl2 x:Name="NameTextBox" MaxLength="10" Width="200" Height="22" Background="Azure" Tap="NameTextBox_OnTap" />
+                            <Button x:Name="Button" Width="200" Height="22" Content="Events" Click="Button_OnClick"/>
                         </StackPanel>
                     </StackPanel>
 

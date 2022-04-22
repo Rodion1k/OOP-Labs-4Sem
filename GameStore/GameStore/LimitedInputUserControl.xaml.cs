@@ -8,7 +8,7 @@ namespace GameStore
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string),
             typeof(LimitedInputUserControl),
             new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnTextPropertyChanged),
-                new CoerceValueCallback(OnCoerceTextProperty)),new ValidateValueCallback(ValidateTextProperty));
+                new CoerceValueCallback(OnCoerceTextProperty)), new ValidateValueCallback(ValidateTextProperty));
 
         private static bool ValidateTextProperty(object value)
         {
@@ -17,6 +17,7 @@ namespace GameStore
             {
                 return text.Length <= 10;
             }
+
             return true;
         }
 
@@ -47,7 +48,7 @@ namespace GameStore
                 Text = eOldValue;
             }
         }
-        
+
         public LimitedInputUserControl()
         {
             InitializeComponent();
@@ -66,6 +67,5 @@ namespace GameStore
         {
             Text = txtLimitedInput.Text;
         }
-     
     }
 }

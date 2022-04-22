@@ -62,7 +62,11 @@
         <Compile Include="AddGameWindow.xaml.cs">
           <DependentUpon>AddGameWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="Command\WindowCommands.cs" />
         <Compile Include="CustomControls\CustomText.cs" />
+        <Compile Include="EventsWindow.xaml.cs">
+          <DependentUpon>EventsWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="Game.cs" />
         <Compile Include="LimitedInputUserControl.xaml.cs">
           <DependentUpon>LimitedInputUserControl.xaml</DependentUpon>
@@ -73,10 +77,14 @@
           <DependentUpon>ShopPage.xaml</DependentUpon>
         </Compile>
         <Compile Include="UndoRedo\UndoManager.cs" />
+        <Compile Include="UserControl2.xaml.cs">
+          <DependentUpon>UserControl2.xaml</DependentUpon>
+        </Compile>
         <Compile Include="ViewModel\ItemMenu.cs" />
         <Compile Include="ViewModel\SubItem.cs" />
         <Page Include="AddGameWindow.xaml" />
         <Page Include="CustomControls\CustomText.xaml" />
+        <Page Include="EventsWindow.xaml" />
         <Page Include="LimitedInputUserControl.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -101,6 +109,7 @@
         <Page Include="Resources\MainWindowMenuButton.xaml" />
         <Page Include="Resources\ToolbarButton.xaml" />
         <Page Include="ShopPage.xaml" />
+        <Page Include="UserControl2.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -140,9 +149,6 @@
       <Content Include="Images\hoi4.jpg" />
       <Content Include="Images\wargame.jpeg" />
       <Content Include="Serialization\games.json" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Command" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Import Project="..\packages\MaterialDesignThemes.4.5.0-ci133\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0-ci133\build\MaterialDesignThemes.targets')" />
